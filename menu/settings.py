@@ -79,6 +79,7 @@ def settings_menu(window):
                     elif vol_button_mute.is_clicked([event]):
                         volume_value = 100
                         slider_knob.centerx = slider_rect.right
+            
 
                 if event.type == pygame.MOUSEBUTTONUP and event.button == 1:
                     dragging = False
@@ -89,6 +90,7 @@ def settings_menu(window):
                     slider_knob.centerx = new_x
                     # Calcular valor según la posición
                     volume_value = int(((new_x - slider_rect.left) / slider_rect.w) * 100)
+
 
         # --- DIBUJADO ---
         window.blit(fondo, (0, 0))
