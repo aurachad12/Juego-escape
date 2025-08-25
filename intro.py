@@ -25,7 +25,7 @@ def main_intro():
     pygame.init()
     
     try:
-        from Valores import ANCHO_PANTALLA, ALTO_PANTALLA
+        from configuracion import ANCHO_PANTALLA, ALTO_PANTALLA
         WIDTH, HEIGHT = ANCHO_PANTALLA, ALTO_PANTALLA
     except ImportError:
         WIDTH, HEIGHT = 1280, 720
