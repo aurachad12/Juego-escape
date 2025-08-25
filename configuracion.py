@@ -7,9 +7,7 @@ incluyendo las dimensiones de la ventana del juego, los colores y la velocidad d
 from fondos.fondo import fondo_prueba
 
 fondo_1 = fondo_prueba
-# Dimensiones de la ventana del juego
-ALTO_PANTALLA = 720
-ANCHO_PANTALLA = 1280
+
 
 # Colores en formato RGB
 BLANCO = (255, 255, 255)

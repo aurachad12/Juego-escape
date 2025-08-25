@@ -2,9 +2,10 @@ import pygame
 import sys
 import os
 from .button import Button
-from configuracion import ANCHO_PANTALLA, ALTO_PANTALLA
+
 
 def settings_menu(window):
+    from configuracion import ANCHO_PANTALLA, ALTO_PANTALLA
     ANCHO_PANTALLA, ALTO_PANTALLA = window.get_size()
     clock = pygame.time.Clock()
     BASE_DIR = os.path.dirname(__file__)
