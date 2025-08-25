@@ -23,7 +23,7 @@ def draw_loading_spinner(surface, center, radius, frame, alpha=255):
 
 def main_intro():
     pygame.init()
-
+    
     try:
         from Valores import ANCHO_PANTALLA, ALTO_PANTALLA
         WIDTH, HEIGHT = ANCHO_PANTALLA, ALTO_PANTALLA
@@ -32,41 +32,57 @@ def main_intro():
     
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("Palermo Studios Intro")
-
+    
     BLACK = (0, 0, 0)
     WHITE = (255, 255, 255)
-    ACCENT_COLOR = (100, 149, 237)  
-
+    ACCENT_COLOR = (100, 149, 237)
+    
     clock = pygame.time.Clock()
-
+    
     try:
         big_font = pygame.font.Font(None, 150)
         small_font = pygame.font.Font(None, 70)
     except:
         big_font = pygame.font.SysFont("Arial", 150, bold=True)
         small_font = pygame.font.SysFont("Arial", 70)
-
-    logo_image = pygame.image.load("intro_assets/arbol.jpg")
+    
+    logo_original = pygame.image.load("intro_assets/arbol.jpg")
+    
+    max_logo_width = WIDTH // 2  
+    max_logo_height = HEIGHT // 2 
+    
+    original_width = logo_original.get_width()
+    original_height = logo_original.get_height()
+    
+    scale_x = max_logo_width / original_width
+    scale_y = max_logo_height / original_height
+    scale = min(scale_x, scale_y)  
+    
+    new_width = int(original_width * scale)
+    new_height = int(original_height * scale)
+    
+    logo_image = pygame.transform.scale(logo_original, (new_width, new_height))
+    
     studio_text = small_font.render("PALERMO STUDIOS", True, WHITE)
     
     logo_surface = logo_image.convert_alpha()
     studio_surface = studio_text.convert_alpha()
-
-    logo_rect = logo_image.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 50))
-    studio_rect = studio_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 50))
+    
+    logo_rect = logo_image.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 50))  
+    studio_rect = studio_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 150))  
     
     loading_center = (WIDTH // 2, HEIGHT - 50)
     loading_radius = 25
-
-    FADE_IN_FRAMES = 30      
-    HOLD_FRAMES = 30          
-    FADE_OUT_FRAMES = 30     
-    STUDIO_FADE_IN_FRAMES = 30  
-    LOADING_FRAMES = 180        
     
-    logo_transition_end = FADE_IN_FRAMES + HOLD_FRAMES + FADE_OUT_FRAMES  
-    total_duration = logo_transition_end + STUDIO_FADE_IN_FRAMES + LOADING_FRAMES  
-
+    FADE_IN_FRAMES = 30
+    HOLD_FRAMES = 30
+    FADE_OUT_FRAMES = 30
+    STUDIO_FADE_IN_FRAMES = 30
+    LOADING_FRAMES = 180
+    
+    logo_transition_end = FADE_IN_FRAMES + HOLD_FRAMES + FADE_OUT_FRAMES
+    total_duration = logo_transition_end + STUDIO_FADE_IN_FRAMES + LOADING_FRAMES
+    
     frame = 0
     running = True
     
@@ -77,9 +93,9 @@ def main_intro():
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE or event.key == pygame.K_SPACE:
                     running = False
-
+        
         screen.fill(BLACK)
-
+        
         if frame < logo_transition_end:
             if frame < FADE_IN_FRAMES:
                 alpha = int((frame / FADE_IN_FRAMES) * 255)
@@ -91,7 +107,7 @@ def main_intro():
             
             logo_surface.set_alpha(alpha)
             screen.blit(logo_surface, logo_rect)
-
+        
         elif frame < total_duration:
             studio_frame = frame - logo_transition_end
             if studio_frame < STUDIO_FADE_IN_FRAMES:
@@ -103,14 +119,14 @@ def main_intro():
             screen.blit(studio_surface, studio_rect)
             
             draw_loading_spinner(screen, loading_center, loading_radius, frame, alpha)
-
+        
         pygame.display.flip()
         frame += 1
         clock.tick(60)
-
+        
         if frame >= total_duration:
             running = False
-
+    
     pygame.time.wait(200)
     return
 
