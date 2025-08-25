@@ -58,10 +58,11 @@ class Jugador:
         teclas = pygame.key.get_pressed()
         moviendo = False
 
-        izquierda = teclas[pygame.K_LEFT]
-        derecha = teclas[pygame.K_RIGHT]
-        arriba = teclas[pygame.K_UP]
-        abajo = teclas[pygame.K_DOWN]
+        izquierda = teclas[pygame.K_a]
+        derecha = teclas[pygame.K_d]
+        arriba = teclas[pygame.K_w]
+        abajo = teclas[pygame.K_s]
+
 
         if izquierda:
             self.rect.x -= self.velocidad
