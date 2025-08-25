@@ -48,8 +48,8 @@ def main_intro():
     
     logo_original = pygame.image.load("intro_assets/arbol.png")
     
-    max_logo_width = WIDTH // 1
-    max_logo_height = HEIGHT // 1  
+    max_logo_width = WIDTH // 0.8
+    max_logo_height = HEIGHT // 0.8  
     
     original_width = logo_original.get_width()
     original_height = logo_original.get_height()
