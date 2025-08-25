@@ -25,11 +25,11 @@ def menu():
         fondo.fill((50, 50, 50))  # gris si no hay imagen
 
     # Botones (si no hay imagen, la clase mostrará un fallback)
-    ruta_start = os.path.join(BASE_DIR, "assets", "start.png")
+    ruta_start = os.path.join(BASE_DIR, "assets", "jugar2.1.png")
     ruta_exit = os.path.join(BASE_DIR, "assets", "exit_button.png")
     ruta_options = os.path.join(BASE_DIR, "assets", "options.png")
 
-    start_button = Button(ruta_start, (500, 450), scale=2, text=None)
+    start_button = Button(ruta_start, (475, 450), scale=1, text=None)
     exit_button = Button(ruta_exit, (700, 450), scale=0.8, text=None)
     options_button = Button(ruta_options, (1225, 40), scale=0.3, text=None)
 
