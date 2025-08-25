@@ -2,7 +2,7 @@ import pygame
 import sys
 import os
 from .button import Button
-from Valores import ANCHO_PANTALLA, ALTO_PANTALLA
+from configuracion import ANCHO_PANTALLA, ALTO_PANTALLA
 
 def settings_menu(window):
     ANCHO_PANTALLA, ALTO_PANTALLA = window.get_size()

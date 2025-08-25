@@ -1,6 +1,6 @@
 import pygame
 import os
-from .configuracion import ANCHO_PANTALLA, ALTO_PANTALLA, BLANCO, ESCALA_JUGADOR
+from configuracion import ANCHO_PANTALLA, ALTO_PANTALLA, BLANCO, ESCALA_JUGADOR
 from .jugador import Jugador
 
 def ejecutar_juego():
@@ -9,7 +9,7 @@ def ejecutar_juego():
     pygame.display.set_caption("movimiento_jugador")
 
     # Cargar fondo
-    from .configuracion import fondo_1  # Importar el fondo desde el módulo adecuado
+    from ..configuracion import fondo_1  # Importar el fondo desde el módulo adecuado
     ruta_fondo = fondo_1
     try:
         fondo = pygame.image.load(ruta_fondo).convert()  # convert() para optimizar
