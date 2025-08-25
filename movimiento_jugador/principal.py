@@ -8,17 +8,15 @@ def ejecutar_juego():
     pantalla = pygame.display.set_mode((ANCHO_PANTALLA, ALTO_PANTALLA))
     pygame.display.set_caption("movimiento_jugador")
 
-    # Cargar fondo
-    from configuracion import fondo_1  # Importar el fondo desde el módulo adecuado
+    from configuracion import fondo_1  
     ruta_fondo = fondo_1
     try:
-        fondo = pygame.image.load(ruta_fondo).convert()  # convert() para optimizar
-        fondo = pygame.transform.scale(fondo, (ANCHO_PANTALLA, ALTO_PANTALLA))  # escalar al tamaño de la ventana
+        fondo = pygame.image.load(ruta_fondo).convert()  
+        fondo = pygame.transform.scale(fondo, (ANCHO_PANTALLA, ALTO_PANTALLA))  
     except Exception as e:
         print(f"No se pudo cargar el fondo: {e}")
         fondo = None
 
-    # Crear jugador
     ancho_jugador = 50
     alto_jugador = 50
     pos_x = (ANCHO_PANTALLA - ancho_jugador) // 2
@@ -37,13 +35,13 @@ def ejecutar_juego():
 
         jugador.manejar_teclas()
 
-        # Dibujar fondo
+        
         if fondo:
             pantalla.blit(fondo, (0, 0))
         else:
-            pantalla.fill(BLANCO)  # fondo blanco si no se cargó la imagen
-
-        # Dibujar jugador
+            pantalla.fill(BLANCO)  
+        
+        
         jugador.dibujar(pantalla)
         pygame.display.flip()
 
