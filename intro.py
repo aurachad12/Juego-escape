@@ -46,17 +46,17 @@ def main_intro():
         big_font = pygame.font.SysFont("Arial", 150, bold=True)
         small_font = pygame.font.SysFont("Arial", 70)
     
-    logo_original = pygame.image.load("intro_assets/arbol.jpg")
+    logo_original = pygame.image.load("intro_assets/arbol.png")
     
-    max_logo_width = WIDTH // 2  
-    max_logo_height = HEIGHT // 2 
+    max_logo_width = WIDTH // 1
+    max_logo_height = HEIGHT // 1  
     
     original_width = logo_original.get_width()
     original_height = logo_original.get_height()
     
     scale_x = max_logo_width / original_width
     scale_y = max_logo_height / original_height
-    scale = min(scale_x, scale_y)  
+    scale = min(scale_x, scale_y) 
     
     new_width = int(original_width * scale)
     new_height = int(original_height * scale)
@@ -69,9 +69,9 @@ def main_intro():
     studio_surface = studio_text.convert_alpha()
     
     logo_rect = logo_image.get_rect(center=(WIDTH // 2, HEIGHT // 2 - 50))  
-    studio_rect = studio_text.get_rect(center=(WIDTH // 2, HEIGHT // 2 + 150))  
+    studio_rect = studio_text.get_rect(center=(WIDTH // 2, HEIGHT // 2))
     
-    loading_center = (WIDTH // 2, HEIGHT - 50)
+    loading_center = (WIDTH // 2, HEIGHT // 2 + 80)
     loading_radius = 25
     
     FADE_IN_FRAMES = 30
@@ -130,10 +130,7 @@ def main_intro():
     pygame.time.wait(200)
     return
 
-def test_intro():
-    """Función para probar la intro de forma independiente"""
-    main_intro()
-    pygame.quit()
+
 
 if __name__ == "__main__":
-    test_intro()
+    main_intro()
