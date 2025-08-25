@@ -24,45 +24,56 @@ def menu():
         fondo = pygame.Surface((X, Y))
         fondo.fill((50, 50, 50))  # gris si no hay imagen
 
-    # Botones (si no hay imagen, la clase mostrará un fallback)
+    # Rutas de imágenes
     ruta_start = os.path.join(BASE_DIR, "assets", "jugar2.1.png")
-    ruta_exit = os.path.join(BASE_DIR, "assets", "exit_button.png")
-    ruta_options = os.path.join(BASE_DIR, "assets", "options.png")
+    ruta_exit = os.path.join(BASE_DIR, "assets", "salir.png")
+    ruta_options_normal = os.path.join(BASE_DIR, "assets", "options.png")
+    ruta_options_hover = os.path.join(BASE_DIR, "assets", "algo.png")  # <- imagen al hacer hover
 
+    # Crear botones
     start_button = Button(ruta_start, (475, 450), scale=1, text=None)
-    exit_button = Button(ruta_exit, (700, 450), scale=0.8, text=None)
-    options_button = Button(ruta_options, (1225, 40), scale=0.3, text=None)
+    exit_button = Button(ruta_exit, (800, 450), scale=1, text=None)
+    options_button = Button(ruta_options_normal, (1225, 40), scale=0.75, text=None)
+    options_button1 = Button(ruta_options_hover, (1000, 40), scale=0.75, text=None)
 
-    # Si prefieres texto además de (o en lugar de) imágenes:
-    # start_button = Button(None, (500, 450), scale=1.2, text="START")
-    # exit_button = Button(None, (700, 450), scale=1.0, text="EXIT")
-    # options_button = Button(None, (1225, 40), scale=0.8, text="OPTIONS")
+    # Cargar imagen de hover como Surface
+    img_options_normal = pygame.image.load(ruta_options_normal).convert_alpha()
+    img_options_hover = pygame.image.load(ruta_options_hover).convert_alpha()
+
+    # Estado de hover previo para evitar reinicios constantes
+    hover_anterior = False
 
     while True:
-        # 1) Tomamos todos los eventos del frame una sola vez
         events = pygame.event.get()
         for event in events:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
 
-        # 2) Lógica de botones con "edge click"
         if start_button.is_clicked(events):
             print("Iniciar juego")
-            return  # Aquí arrancaría tu juego
+            return
 
         if exit_button.is_clicked(events):
             pygame.quit()
             sys.exit()
 
         if options_button.is_clicked(events):
-            # Antes de entrar a Ajustes, opcionalmente limpiar clicks “en curso”
             pygame.event.clear()
-            settings_menu(window)  # Pantalla modal de Ajustes
-            # Al volver, limpiamos la cola para que no se re-accionen clicks
+            settings_menu(window)
             pygame.event.clear()
 
-        # 3) Dibujar
+        # Detectar si el mouse está sobre options_button y cambiar imagen base
+        if options_button.rect.collidepoint(pygame.mouse.get_pos()):
+            if not hover_anterior:
+                options_button.original_image = img_options_hover
+                hover_anterior = True
+        else:
+            if hover_anterior:
+                options_button.original_image = img_options_normal
+                hover_anterior = False
+
+        # Dibujar
         window.blit(fondo, (0, 0))
 
         start_button.update()
@@ -75,4 +86,3 @@ def menu():
 
         pygame.display.flip()
         clock.tick(60)
-
