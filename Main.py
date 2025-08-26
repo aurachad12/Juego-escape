@@ -2,12 +2,15 @@
 import time
 from movimiento_jugador import principal
 from intro import main_intro
+from pantalla_carga import press_any_key_screen
 from menu.menuzaso import menu
 
 def main():
     
-    #main_intro()   # Ejecuta la intro del juego
+    main_intro()   # Ejecuta la intro del juego
     time.sleep(1)  # Pausa breve entre la intro y el menu
+    press_any_key_screen()
+    time.sleep(1)
     menu()         # Muestra el menú principal
     
     
@@ -16,4 +19,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    

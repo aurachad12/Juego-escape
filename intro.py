@@ -23,7 +23,18 @@ def draw_loading_spinner(surface, center, radius, frame, alpha=255):
 
 def main_intro():
     pygame.init()
-    
+
+    # Inicializa el mixer de audio
+    pygame.mixer.init()
+
+    try:
+        # Cargar y reproducir el audio de la intro
+        pygame.mixer.music.load("SONIDOS/buen-audio.mp3")  # Cambia el nombre si es necesario
+        pygame.mixer.music.set_volume(0.8)  # Opcional: ajustar volumen
+        pygame.mixer.music.play()
+    except pygame.error as e:
+        print(f"No se pudo reproducir el audio: {e}")
+
     try:
         from configuracion import ANCHO_PANTALLA, ALTO_PANTALLA
         WIDTH, HEIGHT = ANCHO_PANTALLA, ALTO_PANTALLA
@@ -126,11 +137,11 @@ def main_intro():
         
         if frame >= total_duration:
             running = False
-    
+
+    # Espera un momento antes de cerrar y detiene la música
     pygame.time.wait(200)
+    pygame.mixer.music.stop()
     return
-
-
 
 if __name__ == "__main__":
     main_intro()

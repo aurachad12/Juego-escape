@@ -84,7 +84,7 @@ def menu():
     BASE_DIR = os.path.dirname(__file__)
 
     # Fondo
-    ruta_fondo = os.path.join(BASE_DIR, "assets", "prueba.png")
+    ruta_fondo = os.path.join(BASE_DIR, "assets", "fondo_titulo.png")
     if os.path.exists(ruta_fondo):
         fondo = pygame.image.load(ruta_fondo).convert()
         fondo = pygame.transform.scale(fondo, (ANCHO_PANTALLA, ALTO_PANTALLA))
@@ -93,14 +93,14 @@ def menu():
         fondo.fill((50, 50, 50))  
 
     # Rutas de imágenes
-    ruta_start = os.path.join(BASE_DIR, "assets", "play_prueba.png")
+    ruta_start = os.path.join(BASE_DIR, "assets", "DEFINITIVO.png")
     ruta_exit = os.path.join(BASE_DIR, "assets", "salir.png")
     ruta_options_normal = os.path.join(BASE_DIR, "assets", "options.png")
     ruta_options_hover = os.path.join(BASE_DIR, "assets", "algo.png")
 
     # Crear botones
-    start_button = Button(ruta_start, (400, 450), scale=1.5, text=None)
-    exit_button = Button(ruta_exit, (900, 450), scale=1.5, text=None)
+    start_button = Button(ruta_start, (400, 500), scale=1.25, text=None)
+    exit_button = Button(ruta_exit, (800, 500), scale=1.25, text=None)
     options_button = Button(ruta_options_normal, (1225, 40), scale=0.75, text=None)
 
     # Cargar imágenes como Surface
@@ -120,8 +120,8 @@ def menu():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-        MENU_TEXT = get_font(100).render("THE DUNGEON", True, "#cfd8dc")
-        MENU_TEXT_2 = get_font(100).render("ESCAPE", True, "#cfd8dc")
+        MENU_TEXT = get_font(100).render("", True, "#cfd8dc")
+        MENU_TEXT_2 = get_font(100).render("", True, "#cfd8dc")
         MENU_RECT = MENU_TEXT.get_rect(center=(640, 125))
         MENU_RECT_2 = MENU_TEXT_2.get_rect(center=(640, 250))
 
